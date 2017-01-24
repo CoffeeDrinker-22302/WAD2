@@ -13,8 +13,14 @@ def detail(request, question_id):
 	#this code is imcomplete see lecture 4: Raising a 404 error
 	
 	############################################ """
-	
 
+	
+def about(request):
+	# Constructs an about page.
+	context_dict = {'boldmessage': "This is the __about__ page!! Yayyy"}
+	return render(request, 'rango/about.html', context=context_dict)
+	return HttpResponse("Rango says hey there partner!")
+	
 def index(request):
 	# Constructs a dictionary to pass to the template engine as its context.
 	# Note the key boldmessage is the same as {{ boldmessage }} in the template!
@@ -26,4 +32,5 @@ def index(request):
 	return render(request, 'rango/index.html', context=context_dict)
 	
 	# This is from previous work.
-	return HttpResponse("Rango says hey there partner!")
+	# The HttpResponse just outputs a string onto the page.
+	#return HttpResponse("Rango says hey there partner!")
