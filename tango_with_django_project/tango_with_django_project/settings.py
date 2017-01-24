@@ -13,13 +13,12 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# Directory Values
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
-
-print "BASE_DIR"
-print(BASE_DIR)
-print "TEMPLATE_DIR"
-print(TEMPLATE_DIR)
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = MEDIA_DIR
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -34,6 +33,8 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+
+STATICFILES_DIRS = [STATIC_DIR, ]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -68,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+				'django.template.context_processors.media'
             ],
         },
     },
@@ -124,3 +126,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
