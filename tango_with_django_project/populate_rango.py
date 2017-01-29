@@ -47,8 +47,17 @@ def populate():
 		
 	def add_cat(name):
 		c = Category.objects.get_or_create(name=name)[0]
-		c.views = 128
-		c.likes = 64
+		if name == 'Python':
+			c.views = 128
+			c.likes = 64
+		elif name == 'Django':
+			c.views = 64
+			c.likes = 32
+		elif name == 'Other Frameworks':
+			c.views = 32
+			c.likes = 16
+		else:
+			print 'add_cat_error'
 		c.save()
 		return c
 	
