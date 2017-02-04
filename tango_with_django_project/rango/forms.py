@@ -14,6 +14,8 @@ class CategoryForm(forms.ModelForm):
 		fields = ('name',)
 
 class PageForm(forms.ModelForm):
+	# See the HTML file "add_page.html" 
+	# the fields below will all display themselves in this html file due to the for loop.
 	title = forms.CharField(max_length=128, help_text="Please enter the title of the page.")
 	url = forms.URLField(max_length=200, help_text = "Please enter the URL of the page.")
 	views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)

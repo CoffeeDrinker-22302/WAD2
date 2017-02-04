@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from rango.models import Category
 from rango.models import Page
 from rango.forms import CategoryForm
+from rango.forms import PageForm
 
 """	#############################################
 def detail(request, question_id):
@@ -41,12 +42,34 @@ def add_category(request):
 			return index(request)
 		else:
 			# The supplied form contained errors -
-			# just rint them to the terminal.
+			# just print them to the terminal.
 			print(form.errors)
 	# Will handle the bad form, new form, or no form supplied cases
 	# Render the form with error messages (if any)
-	return render(request, 'rango/add_category.html', {'form':form})
-	
+	return render(request, 'rango/add_category.html', {'form': form})
+
+def add_page(request, category_name_slug):
+	try:
+		category = Category.objects.get(slug=category_name_slug)
+	except Category.DoesNotExist:
+		category = None
+
+	form = PageForm()
+	if request.method == 'POST':
+		form = PageForm(request.POST)
+		if form.is_valid():
+			if category:
+				page = form.save(commit=False)
+				page.category = category
+				page.views = 0
+				page.save()
+				return show_category(request, category_name_slug)
+		else:
+			print (form.errors)
+
+	context_dict = {'form': form, 'category': category}
+	return render(request, 'rango/add_page.html', context_dict)
+			
 def index(request):
 	# Query the database for a list of ALL categories currently stored.
 	# Order the categories by no. likes in descending order.
