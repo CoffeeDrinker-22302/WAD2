@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from rango import views
+from django.contrib.auth.decorators import login_required
 
 #app_name = 'rango'
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
 		views.register,
 		name='register'), # New pattern!
 	url(r'^login/$',views.user_login, name='login'),
+	url(r'^restricted/',views.restricted, name='restricted'),
 ]
