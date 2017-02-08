@@ -9,6 +9,9 @@
 {% block body_block %}
 	<h1>Rango says...</h1>
 	<div>
+		<p> visits: {{ visits }} </p>
+	</div>
+	<div>
 		{% if user.is_authenticated %}
 			Howdy {{ user.username }}
 		{% else %}
@@ -33,9 +36,9 @@
 		Most Viewed Pages
 		{% if categories %}
 			<ul>
-				{% for category in most_liked %}
+				{% for Page in pages %}
 					<li>
-						<a href="{% url 'show_category' category.slug %}">{{ category.name }}</a>
+						<a href="{{ Page.url }}">{{ Page.title }}</a>
 					</li>
 				{% endfor %}
 			</ul>
