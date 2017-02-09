@@ -9,8 +9,19 @@
 {% block body_block %}
 	<h1>{{ category.name }}</h1>
 	<div>
+		Rango says here is the about page
+		This tutorial has been put together by Jimmy Tang 2301714t
+		You have visited this website {{ visits }} times
+	</div>
+	<div>
 		Obviously there is something different now...
 		hey there partner! <br />
 		<strong>{{ boldmessage }}>></strong><br />
+	</div>
+	<div>
+		<img src="{% static "images/cat.jpg" %}" alt="Restricted page" />
+	</div>
+	<div>
+		<img src="{{ MEDIA_URL }}cat.jpg" alt="media_url" />
 	</div>
 {% endblock %}

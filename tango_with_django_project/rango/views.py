@@ -25,8 +25,11 @@ def detail(request, question_id):
 
 	
 def about(request):
+	visitor_cookie_handler(request)
+	visits = request.session['visits']
+	
 	# Constructs an about page.
-	context_dict = {'boldmessage': "This is the __about__ page!! Yayyy"}
+	context_dict = {'boldmessage': "This is the __about__ page!! Yayyy", 'visits': visits}
 	return render(request, 'rango/about.html', context=context_dict)
 	
 @login_required
